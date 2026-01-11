@@ -7,7 +7,7 @@
     <title>ZAKER | DJ & Producer</title>
     <meta name="description"
         content="Zaker - DJ & Dancer especializado en Hardbounce, Hardtechno y Hardgroove. Escucha mis tracks y contáctame para bookings.">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a1a">
     <meta property="og:title" content="ZAKER | DJ & Producer">
     <meta property="og:description" content="Hardbounce | Hardtechno | Hardgroove 🔥">
     <meta property="og:type" content="website">
@@ -15,20 +15,23 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --primary: #ff2d55;
-            --primary-glow: rgba(255, 45, 85, 0.4);
-            --secondary: #5856d6;
-            --accent: #00d4ff;
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --bg-card-hover: rgba(255, 255, 255, 0.1);
+            --primary: #a855f7;
+            --primary-light: #c084fc;
+            --secondary: #06b6d4;
+            --accent: #f472b6;
+            --bg-dark: #0a0a1a;
+            --bg-gradient-1: #1a1a2e;
+            --bg-gradient-2: #16213e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.2);
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --text-secondary: rgba(255, 255, 255, 0.6);
         }
 
         * {
@@ -37,16 +40,21 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Background */
-        .bg-animation {
+        /* Premium Animated Background */
+        .bg-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -54,53 +62,117 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-gradient-1) 50%, var(--bg-gradient-2) 100%);
         }
 
-        .bg-animation::before {
-            content: '';
+        .orb {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, var(--primary-glow) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(88, 86, 214, 0.3) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes bgPulse {
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: 20%;
+            left: -15%;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            bottom: -10%;
+            right: 20%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
 
             0%,
             100% {
                 transform: translate(0, 0) scale(1);
-                opacity: 0.5;
+            }
+
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
             }
 
             50% {
-                transform: translate(-5%, -5%) scale(1.1);
-                opacity: 0.8;
+                transform: translate(-20px, 20px) scale(0.95);
             }
+
+            75% {
+                transform: translate(20px, 10px) scale(1.05);
+            }
+        }
+
+        /* Noise overlay for premium texture */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
         /* Container */
         .container {
-            max-width: 480px;
+            max-width: 440px;
             margin: 0 auto;
-            padding: 24px 16px 40px;
+            padding: 32px 20px 48px;
             position: relative;
+        }
+
+        /* Glass Card Mixin */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
         }
 
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 32px;
-            animation: fadeInUp 0.8s ease-out;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
 
             to {
@@ -109,198 +181,436 @@
             }
         }
 
-        .avatar-container {
+        .avatar-wrapper {
             position: relative;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            padding: 4px;
+            background: var(--bg-dark);
         }
 
         .avatar {
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 30px var(--primary-glow);
-            animation: avatarPulse 3s ease-in-out infinite;
         }
 
-        @keyframes avatarPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 30px var(--primary-glow);
-            }
-
-            50% {
-                box-shadow: 0 0 50px var(--primary-glow), 0 0 80px rgba(255, 45, 85, 0.2);
-            }
-        }
-
-        .live-badge {
+        .status-badge {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            bottom: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             font-size: 10px;
             font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
         }
 
         .artist-name {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 50%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            text-shadow: 0 0 60px rgba(168, 85, 247, 0.3);
         }
 
-        .artist-tagline {
-            font-size: 1rem;
+        .artist-subtitle {
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            font-weight: 300;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .genre-tags {
+        .artist-bio {
+            max-width: 320px;
+            margin: 16px auto 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .artist-bio strong {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .genre-container {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
-        .genre-tag {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
+        .genre-pill {
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            border: 1px solid;
             backdrop-filter: blur(10px);
         }
 
-        .genre-tag:nth-child(1) {
-            color: var(--primary);
-            border-color: var(--primary);
+        .genre-pill:nth-child(1) {
+            /* Hardbounce - Azul 240km/h exacto */
+            color: #c5c5c5;
+            border-color: #3535cc;
+            background: #3535cc;
         }
 
-        .genre-tag:nth-child(2) {
-            color: var(--secondary);
-            border-color: var(--secondary);
+        .genre-pill:nth-child(2) {
+            /* Hardtechno - Naranja oscuro */
+            color: #ff6d00;
+            border-color: rgba(255, 109, 0, 0.4);
+            background: rgba(255, 109, 0, 0.15);
         }
 
-        .genre-tag:nth-child(3) {
+        .genre-pill:nth-child(3) {
             color: var(--accent);
-            border-color: var(--accent);
+            border-color: rgba(244, 114, 182, 0.3);
+            background: rgba(244, 114, 182, 0.1);
         }
 
-        /* Section Title */
+        /* Section */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
         .section-title {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--text-secondary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
         }
 
-        .section-title::before,
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-        }
-
-        /* Tracks Grid */
-        .tracks-grid {
+        /* Tracks */
+        .tracks-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .track-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(20px);
-            animation: fadeInUp 0.6s ease-out backwards;
+        /* Large Track Card - 3D Glass Effect */
+        .track-large {
+            position: relative;
+            border-radius: 28px;
+            overflow: visible;
+            aspect-ratio: 1 / 1;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
+            animation: slideUp 0.8s ease-out backwards;
         }
 
-        .track-card:nth-child(1) {
+        .track-large-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            padding: 3px;
+            box-shadow:
+                0 25px 60px -15px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .track-large-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+            border-radius: 28px 28px 0 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .track-artwork-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .track-large:nth-child(1) {
             animation-delay: 0.1s;
         }
 
-        .track-card:nth-child(2) {
+        .track-large:nth-child(2) {
             animation-delay: 0.2s;
         }
 
-        .track-card:nth-child(3) {
+        .track-large:nth-child(3) {
             animation-delay: 0.3s;
         }
 
-        .track-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
 
-        .track-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .track-card:active {
-            transform: scale(0.98);
-            background: var(--bg-card-hover);
-            border-color: var(--primary);
-        }
-
-        @media (hover: hover) {
-            .track-card:hover {
-                transform: translateX(8px);
-                background: var(--bg-card-hover);
-                border-color: var(--primary);
-                box-shadow: -4px 0 20px var(--primary-glow);
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
-        .track-artwork {
-            width: 72px;
-            height: 72px;
-            border-radius: 12px;
-            object-fit: cover;
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        .track-large:active {
+            transform: scale(0.98) translateY(2px);
         }
 
-        .track-info {
+        @media (hover: hover) {
+            .track-large:hover {
+                transform: translateY(-12px) rotateX(5deg) scale(1.02);
+            }
+
+            .track-large:hover .track-large-inner {
+                box-shadow:
+                    0 40px 80px -20px rgba(168, 85, 247, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                    0 0 60px rgba(168, 85, 247, 0.2);
+            }
+
+            .track-large:hover .track-artwork-lg {
+                transform: scale(1.1);
+            }
+
+            .track-large:hover .play-btn-lg {
+                transform: scale(1.15);
+                box-shadow: 0 0 50px rgba(168, 85, 247, 0.7);
+            }
+        }
+
+        .track-large a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .track-artwork-lg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .track-glass-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px 24px;
+            background: linear-gradient(to top,
+                    rgba(10, 10, 26, 0.95) 0%,
+                    rgba(10, 10, 26, 0.7) 40%,
+                    transparent 100%);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .track-glass-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .track-info-lg {
+            flex: 1;
+        }
+
+        .track-title-lg {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .track-artist-lg {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .play-btn-lg {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .play-btn-lg::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .play-btn-lg svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+            margin-left: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0 20px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        .divider-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Compact Track Card - Glass */
+        .track-compact {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        .track-compact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+        }
+
+        .track-compact:active {
+            transform: scale(0.98);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        @media (hover: hover) {
+            .track-compact:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(168, 85, 247, 0.3);
+                transform: translateX(8px);
+                box-shadow: -4px 0 30px rgba(168, 85, 247, 0.2);
+            }
+        }
+
+        .track-artwork-sm {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .track-info-sm {
             flex: 1;
             min-width: 0;
         }
 
-        .track-title {
-            font-size: 1rem;
+        .track-title-sm {
+            font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 4px;
             white-space: nowrap;
@@ -308,50 +618,64 @@
             text-overflow: ellipsis;
         }
 
-        .track-artist {
-            font-size: 0.85rem;
+        .track-artist-sm {
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        .play-icon {
+        .play-btn-sm {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 4px 15px var(--primary-glow);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
         }
 
-        .play-icon svg {
-            width: 18px;
-            height: 18px;
+        .play-btn-sm svg {
+            width: 16px;
+            height: 16px;
             fill: white;
             margin-left: 2px;
         }
 
-        /* SoundCloud Button */
+        /* SoundCloud Button - Glass */
         .soundcloud-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             width: 100%;
-            padding: 16px 24px;
-            margin-top: 24px;
+            padding: 18px 28px;
+            margin-top: 28px;
             background: linear-gradient(135deg, #ff5500, #ff7700);
             border: none;
-            border-radius: 14px;
+            border-radius: 20px;
             color: white;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(255, 85, 0, 0.4);
+            box-shadow:
+                0 10px 40px rgba(255, 85, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soundcloud-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
         }
 
         .soundcloud-btn:active {
@@ -360,28 +684,53 @@
 
         @media (hover: hover) {
             .soundcloud-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 30px rgba(255, 85, 0, 0.5);
+                transform: translateY(-3px);
+                box-shadow: 0 15px 50px rgba(255, 85, 0, 0.4);
             }
         }
 
         .soundcloud-btn svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             fill: white;
         }
 
         /* Contact Section */
         .contact-section {
-            margin-top: 40px;
+            margin-top: 48px;
             text-align: center;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+            animation: fadeIn 1s ease-out 0.5s backwards;
+        }
+
+        .contact-card {
+            padding: 28px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
         }
 
         .contact-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .contact-email {
@@ -389,43 +738,44 @@
             align-items: center;
             gap: 10px;
             padding: 14px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
             border-radius: 30px;
-            color: var(--accent);
+            color: var(--secondary);
             text-decoration: none;
             font-weight: 500;
-            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
         .contact-email:active {
-            background: var(--bg-card-hover);
-            border-color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+            border-color: var(--secondary);
         }
 
         @media (hover: hover) {
             .contact-email:hover {
-                background: var(--bg-card-hover);
-                border-color: var(--accent);
-                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+                background: rgba(6, 182, 212, 0.1);
+                border-color: var(--secondary);
+                box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+                transform: translateY(-2px);
             }
         }
 
         .contact-email svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 48px;
             padding-top: 24px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--glass-border);
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
         .location {
@@ -434,271 +784,148 @@
             justify-content: center;
             gap: 6px;
             margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .location svg {
             width: 14px;
             height: 14px;
-            fill: var(--primary);
+            fill: var(--primary-light);
         }
 
-        /* Equalizer animation */
-        .equalizer {
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-            height: 16px;
-            margin-left: 8px;
-        }
-
-        .equalizer-bar {
-            width: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-            animation: equalize 0.8s ease-in-out infinite;
-        }
-
-        .equalizer-bar:nth-child(1) {
-            animation-delay: 0s;
-            height: 8px;
-        }
-
-        .equalizer-bar:nth-child(2) {
-            animation-delay: 0.2s;
-            height: 16px;
-        }
-
-        .equalizer-bar:nth-child(3) {
-            animation-delay: 0.4s;
-            height: 10px;
-        }
-
-        @keyframes equalize {
-
-            0%,
-            100% {
-                transform: scaleY(0.5);
-            }
-
-            50% {
-                transform: scaleY(1);
-            }
-        }
-
-        /* Large Track Cards - Featured */
-        .track-card-large {
-            position: relative;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            animation: fadeInUp 0.6s ease-out backwards;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .track-card-large:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .track-card-large:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .track-card-large:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .track-card-large:active {
-            transform: scale(0.98);
-        }
-
-        @media (hover: hover) {
-            .track-card-large:hover {
-                transform: scale(1.02);
-                box-shadow: 0 12px 40px rgba(255, 45, 85, 0.3);
-            }
-
-            .track-card-large:hover .track-artwork-large {
-                transform: scale(1.05);
-            }
-
-            .track-card-large:hover .play-icon-large {
-                transform: scale(1.1);
-                box-shadow: 0 8px 30px var(--primary-glow);
-            }
-        }
-
-        .track-artwork-large {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .track-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 24px 20px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .track-info-large {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .track-title-large {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .track-artist-large {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .play-icon-large {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 20px var(--primary-glow);
-            transition: all 0.3s ease;
-        }
-
-        .play-icon-large svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-            margin-left: 3px;
-        }
-
-        /* Section divider */
-        .section-subtitle {
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-secondary);
-            margin: 28px 0 16px;
-            opacity: 0.7;
+        .copyright {
+            opacity: 0.6;
         }
     </style>
 </head>
 
 <body>
-    <div class="bg-animation"></div>
+    <!-- Premium Animated Background -->
+    <div class="bg-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="noise"></div>
 
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="avatar-container">
-                <img src="https://i1.sndcdn.com/avatars-GHieJ3S6PeenwWtu-WRrThQ-t500x500.jpg" alt="Zaker DJ"
-                    class="avatar">
-                <span class="live-badge">DJ</span>
+            <div class="avatar-wrapper">
+                <div class="avatar-glow"></div>
+                <div class="avatar-container">
+                    <img src="https://i1.sndcdn.com/avatars-GHieJ3S6PeenwWtu-WRrThQ-t500x500.jpg" alt="Zaker DJ"
+                        class="avatar">
+                </div>
+                <span class="status-badge">DJ</span>
             </div>
             <h1 class="artist-name">ZAKER</h1>
-            <p class="artist-tagline">
-                DJ & Dancer
-                <span class="equalizer">
-                    <span class="equalizer-bar"></span>
-                    <span class="equalizer-bar"></span>
-                    <span class="equalizer-bar"></span>
-                </span>
+            <p class="artist-subtitle">DJ & Producer</p>
+            <p class="artist-bio">Creative music producer & DJ crafting high-energy <strong>Hardbounce</strong> sets at
+                <strong>155–165 BPM</strong>. Blending powerful beats with innovative sound design.
             </p>
-            <div class="genre-tags">
-                <span class="genre-tag">Hardbounce</span>
-                <span class="genre-tag">Hardtechno</span>
-                <span class="genre-tag">Hardgroove</span>
+            <div class="genre-container">
+                <span class="genre-pill">Hardbounce</span>
+                <span class="genre-pill">Hardtechno</span>
+                <span class="genre-pill">Hardgroove</span>
             </div>
         </header>
 
         <!-- Tracks Section -->
         <section>
-            <h2 class="section-title">Mis Tracks</h2>
-            <div class="tracks-grid">
-                <!-- Track 1 - Featured Large (Más nuevo) -->
-                <a href="https://soundcloud.com/zakerdj/02-hardbounce-girl-zaker" target="_blank" rel="noopener"
-                    class="track-card-large">
-                    <img src="https://i1.sndcdn.com/artworks-3zuWFimpz88wjjHt-eOxd4Q-t500x500.jpg" alt="HardBounce Girl"
-                        class="track-artwork-large">
-                    <div class="track-overlay">
-                        <div class="track-info-large">
-                            <h3 class="track-title-large">HardBounce Girl</h3>
-                            <p class="track-artist-large">Zaker</p>
-                        </div>
-                        <div class="play-icon-large">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="5,3 19,12 5,21" />
-                            </svg>
-                        </div>
-                    </div>
-                </a>
+            <div class="section-header">
+                <span class="section-line"></span>
+                <h2 class="section-title">Latest Tracks</h2>
+                <span class="section-line" style="transform: scaleX(-1);"></span>
+            </div>
 
-                <!-- Track 2 - Featured Large -->
-                <a href="https://soundcloud.com/zakerdj/01-los-indios-zaker" target="_blank" rel="noopener"
-                    class="track-card-large">
-                    <img src="https://i1.sndcdn.com/artworks-THWit5KqtcyoUZyF-zsUw2g-t500x500.jpg" alt="Los Indios"
-                        class="track-artwork-large">
-                    <div class="track-overlay">
-                        <div class="track-info-large">
-                            <h3 class="track-title-large">Los Indios</h3>
-                            <p class="track-artist-large">Zaker</p>
+            <div class="tracks-container">
+                <!-- Track 1 - Large 3D Glass -->
+                <div class="track-large">
+                    <a href="https://soundcloud.com/zakerdj/02-hardbounce-girl-zaker" target="_blank" rel="noopener">
+                        <div class="track-large-inner">
+                            <div class="track-artwork-container">
+                                <img src="https://i1.sndcdn.com/artworks-3zuWFimpz88wjjHt-eOxd4Q-t500x500.jpg"
+                                    alt="HardBounce Girl" class="track-artwork-lg">
+                                <div class="track-glass-overlay">
+                                    <div class="track-info-lg">
+                                        <h3 class="track-title-lg">HardBounce Girl</h3>
+                                        <p class="track-artist-lg">Zaker</p>
+                                    </div>
+                                    <div class="play-btn-lg">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon points="5,3 19,12 5,21" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="play-icon-large">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="5,3 19,12 5,21" />
-                            </svg>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <!-- Track 3 - Featured Large -->
-                <a href="https://soundcloud.com/zakerdj/zaker-sera-porque-te-amo" target="_blank" rel="noopener"
-                    class="track-card-large">
-                    <img src="https://i1.sndcdn.com/artworks-YaOXTrzcUJqXj7f7-6QbyEw-t500x500.jpg"
-                        alt="Será Porque Te Amo" class="track-artwork-large">
-                    <div class="track-overlay">
-                        <div class="track-info-large">
-                            <h3 class="track-title-large">Será Porque Te Amo</h3>
-                            <p class="track-artist-large">Zaker</p>
+                <!-- Track 2 - Large 3D Glass -->
+                <div class="track-large">
+                    <a href="https://soundcloud.com/zakerdj/01-los-indios-zaker" target="_blank" rel="noopener">
+                        <div class="track-large-inner">
+                            <div class="track-artwork-container">
+                                <img src="https://i1.sndcdn.com/artworks-THWit5KqtcyoUZyF-zsUw2g-t500x500.jpg"
+                                    alt="Los Indios" class="track-artwork-lg">
+                                <div class="track-glass-overlay">
+                                    <div class="track-info-lg">
+                                        <h3 class="track-title-lg">Los Indios</h3>
+                                        <p class="track-artist-lg">Zaker</p>
+                                    </div>
+                                    <div class="play-btn-lg">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon points="5,3 19,12 5,21" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="play-icon-large">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="5,3 19,12 5,21" />
-                            </svg>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
-                <!-- Sessions Section -->
-                <p class="section-subtitle">🎧 Sessions</p>
+                <!-- Track 3 - Large 3D Glass -->
+                <div class="track-large">
+                    <a href="https://soundcloud.com/zakerdj/zaker-sera-porque-te-amo" target="_blank" rel="noopener">
+                        <div class="track-large-inner">
+                            <div class="track-artwork-container">
+                                <img src="https://i1.sndcdn.com/artworks-YaOXTrzcUJqXj7f7-6QbyEw-t500x500.jpg"
+                                    alt="Será Porque Te Amo" class="track-artwork-lg">
+                                <div class="track-glass-overlay">
+                                    <div class="track-info-lg">
+                                        <h3 class="track-title-lg">Será Porque Te Amo</h3>
+                                        <p class="track-artist-lg">Zaker</p>
+                                    </div>
+                                    <div class="play-btn-lg">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon points="5,3 19,12 5,21" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Sessions Divider -->
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">🎧 Sessions</span>
+                    <span class="divider-line"></span>
+                </div>
 
                 <!-- Track 4 - Compact -->
                 <a href="https://soundcloud.com/zakerdj/01-rec-2025-08-27" target="_blank" rel="noopener"
-                    class="track-card">
+                    class="track-compact">
                     <img src="https://i1.sndcdn.com/artworks-RLpVPQ1LNkzubUiC-zHNc7Q-t500x500.png"
-                        alt="Hard Bounce September 2025" class="track-artwork">
-                    <div class="track-info">
-                        <h3 class="track-title">Hard Bounce September 2025</h3>
-                        <p class="track-artist">Zaker</p>
+                        alt="Hard Bounce September 2025" class="track-artwork-sm">
+                    <div class="track-info-sm">
+                        <h3 class="track-title-sm">Hard Bounce September 2025</h3>
+                        <p class="track-artist-sm">Zaker</p>
                     </div>
-                    <div class="play-icon">
+                    <div class="play-btn-sm">
                         <svg viewBox="0 0 24 24">
                             <polygon points="5,3 19,12 5,21" />
                         </svg>
@@ -707,14 +934,14 @@
 
                 <!-- Track 5 - Compact -->
                 <a href="https://soundcloud.com/zakerdj/01-sesion-01-z4k3r" target="_blank" rel="noopener"
-                    class="track-card">
+                    class="track-compact">
                     <img src="https://i1.sndcdn.com/avatars-GHieJ3S6PeenwWtu-WRrThQ-t500x500.jpg"
-                        alt="HardBounce Summer 2025" class="track-artwork">
-                    <div class="track-info">
-                        <h3 class="track-title">HardBounce Summer 2025</h3>
-                        <p class="track-artist">Zaker</p>
+                        alt="HardBounce Summer 2025" class="track-artwork-sm">
+                    <div class="track-info-sm">
+                        <h3 class="track-title-sm">HardBounce Summer 2025</h3>
+                        <p class="track-artist-sm">Zaker</p>
                     </div>
-                    <div class="play-icon">
+                    <div class="play-btn-sm">
                         <svg viewBox="0 0 24 24">
                             <polygon points="5,3 19,12 5,21" />
                         </svg>
@@ -722,26 +949,29 @@
                 </a>
             </div>
 
-            <!-- SoundCloud Profile Button -->
+            <!-- SoundCloud Button -->
             <a href="https://soundcloud.com/zakerdj" target="_blank" rel="noopener" class="soundcloud-btn">
                 <svg viewBox="0 0 24 24">
                     <path
                         d="M11.56 8.87V17h8.76c1.85 0 2.68-1.5 2.68-2.91 0-1.41-1.14-2.85-2.68-2.85-.17 0-.6.04-.6.04-.31-2.19-2.16-3.89-4.42-3.89-1.33 0-2.52.61-3.31 1.57-.08.1-.27.02-.27-.1v-.99c0-.59-.45-1.07-1-1.07s-1 .48-1 1.07zm-6.98 3.38c0 .37.27.67.6.67s.6-.3.6-.67v-1.73c0-.37-.27-.67-.6-.67s-.6.3-.6.67v1.73zm-1.96 1.96c0 .37.27.67.6.67s.6-.3.6-.67V11.5c0-.37-.27-.67-.6-.67s-.6.3-.6.67v2.71zM.98 13.5c0 .37.27.67.6.67s.6-.3.6-.67v-1.22c0-.37-.27-.67-.6-.67s-.6.3-.6.67v1.22zm3.92.71c0 .37.27.67.6.67s.6-.3.6-.67v-3.41c0-.37-.27-.67-.6-.67s-.6.3-.6.67v3.41zm1.97.23c0 .37.27.67.6.67s.6-.3.6-.67V9.93c0-.37-.27-.67-.6-.67s-.6.3-.6.67v4.51zm1.96-.1c0 .37.27.67.6.67s.6-.3.6-.67v-3.7c0-.37-.27-.67-.6-.67s-.6.3-.6.67v3.7z" />
                 </svg>
-                Ver perfil completo en SoundCloud
+                Ver perfil en SoundCloud
             </a>
         </section>
 
         <!-- Contact Section -->
         <section class="contact-section">
-            <h3 class="contact-title">📩 Bookings</h3>
-            <a href="mailto:ZakerTechnoDj@gmail.com" class="contact-email">
-                <svg viewBox="0 0 24 24">
-                    <path
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
-                ZakerTechnoDj@gmail.com
-            </a>
+            <div class="contact-card">
+                <div class="contact-icon">📩</div>
+                <h3 class="contact-title">Bookings & Colaboraciones</h3>
+                <a href="mailto:ZakerTechnoDj@gmail.com" class="contact-email">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
+                    ZakerTechnoDj@gmail.com
+                </a>
+            </div>
         </section>
 
         <!-- Footer -->
@@ -753,7 +983,7 @@
                 </svg>
                 Madrid, España
             </p>
-            <p>© 2025 Zaker. All rights reserved.</p>
+            <p class="copyright">© 2025 Zaker. All rights reserved.</p>
         </footer>
     </div>
 </body>
