@@ -2554,8 +2554,8 @@
         const durations = {};
         let currentlyPlaying = null;
         let progressInterval = null;
+        const ignorePause = {}; // Protection against initial pause glitches
 
-        // Initialize widgets when page loads
         // Initialize widgets when page loads
         document.addEventListener('DOMContentLoaded', function () {
             for (let i = 1; i <= 3; i++) {
@@ -2602,6 +2602,39 @@
         });
 
         function togglePlay(trackNum) {
+            const widget = widgets[trackNum];
+            if (!widget) return;
+
+            // Direct check against our state variable (Sync and reliable)
+            if (currentlyPlaying === trackNum) {
+                // Determine if it's actually playing using internal state or just assume toggling off
+                widget.pause();
+                currentlyPlaying = null;
+                ignorePause[trackNum] = false;
+                updateButton(trackNum, false);
+            } else {
+                // If another track is playing, pause it
+                if (currentlyPlaying) {
+                    const prevWidget = widgets[currentlyPlaying];
+                    if (prevWidget) prevWidget.pause();
+                    updateButton(currentlyPlaying, false);
+                }
+
+                // Play the new track
+                // Implement grace period for "First Click" stability
+                ignorePause[trackNum] = true;
+                setTimeout(() => { ignorePause[trackNum] = false; }, 1200); // 1.2s grace period
+
+                widget.play();
+                currentlyPlaying = trackNum;
+
+                // Optimistic UI update: force player to appear immediately
+                updateButton(trackNum, true);
+                showProgress(trackNum, true);
+            }
+        }
+
+        function togglePlay_OLD(trackNum) {
             const widget = widgets[trackNum];
             if (!widget) return;
 
