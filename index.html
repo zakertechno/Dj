@@ -326,40 +326,46 @@
         .genre-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            gap: 0;
             margin-top: 20px;
-            flex-wrap: wrap;
         }
 
         .genre-pill {
-            padding: 8px 16px;
-            border-radius: 30px;
+            padding: 0 16px;
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border: 1px solid;
-            backdrop-filter: blur(10px);
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .genre-pill:not(:last-child)::after {
+            content: '•';
+            position: absolute;
+            right: -4px;
+            color: var(--primary);
+            font-size: 0.6rem;
         }
 
         .genre-pill:nth-child(1) {
-            /* Hardbounce - Azul 240km/h exacto */
-            color: #c5c5c5;
-            border-color: #3535cc;
-            background: #3535cc;
+            /* Hardbounce - Destacado */
+            color: #3535cc;
+            font-weight: 700;
         }
 
         .genre-pill:nth-child(2) {
-            /* Hardtechno - Naranja oscuro */
+            /* Hardtechno */
             color: #ff6d00;
-            border-color: rgba(255, 109, 0, 0.4);
-            background: rgba(255, 109, 0, 0.15);
         }
 
         .genre-pill:nth-child(3) {
+            /* Hardgroove */
             color: var(--accent);
-            border-color: rgba(244, 114, 182, 0.3);
-            background: rgba(244, 114, 182, 0.1);
         }
 
         /* Section */
@@ -880,8 +886,9 @@
                     <span class="eq-bar"></span>
                 </span>
             </p>
-            <p class="artist-bio">Creative music producer & DJ crafting high-energy <strong>Hardbounce</strong> sets at
-                <strong>155–165 BPM</strong>. Blending powerful beats with innovative sound design.
+            <p class="artist-bio">
+                Creative producer crafting high-energy<br>
+                <strong>Hardbounce</strong> sessions at <strong>155–165 BPM</strong>
             </p>
             <div class="genre-container">
                 <span class="genre-pill">Hardbounce</span>
