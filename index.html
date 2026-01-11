@@ -2546,6 +2546,7 @@
         let progressInterval = null;
 
         // Initialize widgets when page loads
+        // Initialize widgets when page loads
         document.addEventListener('DOMContentLoaded', function () {
             for (let i = 1; i <= 3; i++) {
                 const iframe = document.getElementById('sc-player-' + i);
@@ -2562,6 +2563,7 @@
 
                     // Listen for play/pause events
                     widgets[i].bind(SC.Widget.Events.PLAY, function () {
+                        currentlyPlaying = i; // Update state on actual event
                         updateButton(i, true);
                         showProgress(i, true);
                         startProgressUpdate(i);
@@ -2571,6 +2573,11 @@
                         updateButton(i, false);
                         showProgress(i, false);
                         stopProgressUpdate();
+                        // Don't clear currentlyPlaying here immediately to avoid flickering logic
+                        // but strictly we can. Let's keep it handled by toggle logic mainly.
+                        if (currentlyPlaying === i) {
+                            // currentlyPlaying = null; // Optional, but let's leave it for togglePlay to manage or FINISH
+                        }
                     });
 
                     widgets[i].bind(SC.Widget.Events.FINISH, function () {
@@ -2588,23 +2595,23 @@
             const widget = widgets[trackNum];
             if (!widget) return;
 
-            // If another track is playing, pause it first
-            if (currentlyPlaying && currentlyPlaying !== trackNum) {
-                widgets[currentlyPlaying].pause();
-                updateButton(currentlyPlaying, false);
-                // showProgress(currentlyPlaying, false); // Keep visible
-            }
-
-            // Toggle current track
-            widget.isPaused(function (paused) {
-                if (paused) {
-                    widget.play();
-                    currentlyPlaying = trackNum;
-                } else {
-                    widget.pause();
-                    currentlyPlaying = null;
+            // Direct check against our state variable (Sync and reliable)
+            if (currentlyPlaying === trackNum) {
+                // Determine if it's actually playing using internal state or just assume toggling off
+                widget.pause();
+                currentlyPlaying = null;
+            } else {
+                // If another track is playing, pause it
+                if (currentlyPlaying) {
+                    const prevWidget = widgets[currentlyPlaying];
+                    if (prevWidget) prevWidget.pause();
                 }
-            });
+
+                // Play the new track
+                // Important: delay slightly to avoid race conditions with previous pause? No, SC handles it.
+                widget.play();
+                currentlyPlaying = trackNum;
+            }
         }
 
         function updateButton(trackNum, isPlaying) {
