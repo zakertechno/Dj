@@ -2577,7 +2577,7 @@
                         updateButton(i, true);
                         showProgress(i, true);
                         startProgressUpdate(i);
-                        ignorePause[i] = false;
+                        // ignorePause[i] = false; // Do NOT clear here. Let the timeout handle it.
                     });
 
                     widgets[i].bind(SC.Widget.Events.PAUSE, function () {
@@ -2637,28 +2637,6 @@
             }
         }
 
-        function togglePlay_OLD(trackNum) {
-            const widget = widgets[trackNum];
-            if (!widget) return;
-
-            // Direct check against our state variable (Sync and reliable)
-            if (currentlyPlaying === trackNum) {
-                // Determine if it's actually playing using internal state or just assume toggling off
-                widget.pause();
-                currentlyPlaying = null;
-            } else {
-                // If another track is playing, pause it
-                if (currentlyPlaying) {
-                    const prevWidget = widgets[currentlyPlaying];
-                    if (prevWidget) prevWidget.pause();
-                }
-
-                // Play the new track
-                // Important: delay slightly to avoid race conditions with previous pause? No, SC handles it.
-                widget.play();
-                currentlyPlaying = trackNum;
-            }
-        }
 
         function updateButton(trackNum, isPlaying) {
             const track = document.querySelector('[data-track="' + trackNum + '"]');
