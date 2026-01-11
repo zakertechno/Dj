@@ -886,6 +886,113 @@
             gap: 8px;
         }
 
+        /* Video Grid - YouTube Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            aspect-ratio: 16 / 9;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: block;
+        }
+
+        .video-card:hover {
+            transform: scale(1.03) translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.1);
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .youtube-btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 40px;
+            padding: 14px 28px;
+            background: #FF0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .youtube-btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
         /* Compact Track Card - Glass */
         .track-compact {
             text-decoration: none;
@@ -1632,6 +1739,67 @@
                         allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zakerdj/zaker-sera-porque-te-amo&color=%23a855f7&auto_play=false&show_user=false"></iframe>
                 </div>
+            </div>
+        </section>
+
+        <!-- YouTube Section -->
+        <section id="youtube" style="margin-top: 80px; text-align: center;">
+            <div class="section-header">
+                <span class="section-line"></span>
+                <h2 class="section-title">Visual Energy</h2>
+                <span class="section-line" style="transform: scaleX(-1);"></span>
+            </div>
+            <p
+                style="color: var(--text-secondary); max-width: 650px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.6;">
+                Check out my YouTube channel for all my latest sets and more. My Christmas set recently won the contest
+                at <strong>Escuela de DJs de Getafe</strong>!<br> Catch it <a
+                    href="https://www.escueladjsgetafe.es/mixmas" target="_blank" rel="noopener"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 700; border-bottom: 2px solid rgba(168, 85, 247, 0.3); transition: all 0.3s ease;">here</a>.
+            </p>
+
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <a href="https://www.youtube.com/watch?v=ATXgm7Bygow" target="_blank" rel="noopener" class="video-card">
+                    <img src="christmas-set.jpg" alt="Christmas Set | Getafe Contest Winner" class="video-thumbnail">
+                    <div class="video-play-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <div class="video-overlay">
+                        <h3 class="video-title">Christmas Set | Getafe Contest Winner</h3>
+                    </div>
+                </a>
+
+                <!-- Video 2 -->
+                <a href="https://youtu.be/ptug9GCLxR4" target="_blank" rel="noopener" class="video-card">
+                    <img src="https://img.youtube.com/vi/ptug9GCLxR4/maxresdefault.jpg" alt="ZAKER - SERA PORQUE TE AMO"
+                        class="video-thumbnail">
+                    <div class="video-play-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <div class="video-overlay">
+                        <h3 class="video-title">ZAKER - SERA PORQUE TE AMO | Official Remix</h3>
+                    </div>
+                </a>
+            </div>
+
+            <a href="https://www.youtube.com/@ZakerDj" target="_blank" rel="noopener" class="youtube-btn-main">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                </svg>
+                Subscribe on YouTube
+            </a>
+        </section>
+
+        <!-- Sessions Section -->
+        <section id="sessions" style="margin-top: 80px;">
+            <div class="tracks-container">
 
                 <!-- Sessions Divider -->
                 <div class="section-divider">
@@ -1679,7 +1847,7 @@
                     <path
                         d="M11.56 8.87V17h8.76c1.85 0 2.68-1.5 2.68-2.91 0-1.41-1.14-2.85-2.68-2.85-.17 0-.6.04-.6.04-.31-2.19-2.16-3.89-4.42-3.89-1.33 0-2.52.61-3.31 1.57-.08.1-.27.02-.27-.1v-.99c0-.59-.45-1.07-1-1.07s-1 .48-1 1.07zm-6.98 3.38c0 .37.27.67.6.67s.6-.3.6-.67v-1.73c0-.37-.27-.67-.6-.67s-.6.3-.6.67v1.73zm-1.96 1.96c0 .37.27.67.6.67s.6-.3.6-.67V11.5c0-.37-.27-.67-.6-.67s-.6.3-.6.67v2.71zM.98 13.5c0 .37.27.67.6.67s.6-.3.6-.67v-1.22c0-.37-.27-.67-.6-.67s-.6.3-.6.67v1.22zm3.92.71c0 .37.27.67.6.67s.6-.3.6-.67v-3.41c0-.37-.27-.67-.6-.67s-.6.3-.6.67v3.41zm1.97.23c0 .37.27.67.6.67s.6-.3.6-.67V9.93c0-.37-.27-.67-.6-.67s-.6.3-.6.67v4.51zm1.96-.1c0 .37.27.67.6.67s.6-.3.6-.67v-3.7c0-.37-.27-.67-.6-.67s-.6.3-.6.67v3.7z" />
                 </svg>
-                Ver perfil en SoundCloud
+                Check profile on SoundCloud
             </a>
         </section>
 
