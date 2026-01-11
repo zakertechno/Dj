@@ -628,6 +628,29 @@
             font-weight: 500;
         }
 
+        /* SoundCloud Widget */
+        .soundcloud-widget {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px 16px;
+            background: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 20;
+            border-radius: 0 0 22px 22px;
+        }
+
+        .soundcloud-widget iframe {
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .soundcloud-widget iframe:hover {
+            opacity: 1;
+        }
+
         .play-btn-lg {
             width: 64px;
             height: 64px;
@@ -982,73 +1005,64 @@
             </div>
 
             <div class="tracks-container">
-                <!-- Track 1 - Large 3D Glass -->
+                <!-- Track 1 - Large with SoundCloud Player -->
                 <div class="track-large">
-                    <a href="https://soundcloud.com/zakerdj/02-hardbounce-girl-zaker" target="_blank" rel="noopener">
-                        <div class="track-large-inner">
-                            <div class="track-artwork-container">
-                                <img src="https://i1.sndcdn.com/artworks-3zuWFimpz88wjjHt-eOxd4Q-t500x500.jpg"
-                                    alt="HardBounce Girl" class="track-artwork-lg">
-                                <div class="track-glass-overlay">
-                                    <div class="track-info-lg">
-                                        <h3 class="track-title-lg">HardBounce Girl</h3>
-                                        <p class="track-artist-lg">Zaker</p>
-                                    </div>
-                                    <div class="play-btn-lg">
-                                        <svg viewBox="0 0 24 24">
-                                            <polygon points="5,3 19,12 5,21" />
-                                        </svg>
-                                    </div>
+                    <div class="track-large-inner">
+                        <div class="track-artwork-container">
+                            <img src="https://i1.sndcdn.com/artworks-3zuWFimpz88wjjHt-eOxd4Q-t500x500.jpg"
+                                alt="HardBounce Girl" class="track-artwork-lg">
+                            <div class="track-glass-overlay">
+                                <div class="track-info-lg">
+                                    <h3 class="track-title-lg">HardBounce Girl</h3>
+                                    <p class="track-artist-lg">Zaker</p>
                                 </div>
                             </div>
+                            <div class="soundcloud-widget">
+                                <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay"
+                                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zakerdj/02-hardbounce-girl-zaker&color=%23a855f7&inverse=true&auto_play=false&show_user=false"></iframe>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
-                <!-- Track 2 - Large 3D Glass -->
+                <!-- Track 2 - Large with SoundCloud Player -->
                 <div class="track-large">
-                    <a href="https://soundcloud.com/zakerdj/01-los-indios-zaker" target="_blank" rel="noopener">
-                        <div class="track-large-inner">
-                            <div class="track-artwork-container">
-                                <img src="https://i1.sndcdn.com/artworks-THWit5KqtcyoUZyF-zsUw2g-t500x500.jpg"
-                                    alt="Los Indios" class="track-artwork-lg">
-                                <div class="track-glass-overlay">
-                                    <div class="track-info-lg">
-                                        <h3 class="track-title-lg">Los Indios</h3>
-                                        <p class="track-artist-lg">Zaker</p>
-                                    </div>
-                                    <div class="play-btn-lg">
-                                        <svg viewBox="0 0 24 24">
-                                            <polygon points="5,3 19,12 5,21" />
-                                        </svg>
-                                    </div>
+                    <div class="track-large-inner">
+                        <div class="track-artwork-container">
+                            <img src="https://i1.sndcdn.com/artworks-THWit5KqtcyoUZyF-zsUw2g-t500x500.jpg"
+                                alt="Los Indios" class="track-artwork-lg">
+                            <div class="track-glass-overlay">
+                                <div class="track-info-lg">
+                                    <h3 class="track-title-lg">Los Indios</h3>
+                                    <p class="track-artist-lg">Zaker</p>
                                 </div>
                             </div>
+                            <div class="soundcloud-widget">
+                                <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay"
+                                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zakerdj/01-los-indios-zaker&color=%23a855f7&inverse=true&auto_play=false&show_user=false"></iframe>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
-                <!-- Track 3 - Large 3D Glass -->
+                <!-- Track 3 - Large with SoundCloud Player -->
                 <div class="track-large">
-                    <a href="https://soundcloud.com/zakerdj/zaker-sera-porque-te-amo" target="_blank" rel="noopener">
-                        <div class="track-large-inner">
-                            <div class="track-artwork-container">
-                                <img src="https://i1.sndcdn.com/artworks-YaOXTrzcUJqXj7f7-6QbyEw-t500x500.jpg"
-                                    alt="Será Porque Te Amo" class="track-artwork-lg">
-                                <div class="track-glass-overlay">
-                                    <div class="track-info-lg">
-                                        <h3 class="track-title-lg">Será Porque Te Amo</h3>
-                                        <p class="track-artist-lg">Zaker</p>
-                                    </div>
-                                    <div class="play-btn-lg">
-                                        <svg viewBox="0 0 24 24">
-                                            <polygon points="5,3 19,12 5,21" />
-                                        </svg>
-                                    </div>
+                    <div class="track-large-inner">
+                        <div class="track-artwork-container">
+                            <img src="https://i1.sndcdn.com/artworks-YaOXTrzcUJqXj7f7-6QbyEw-t500x500.jpg"
+                                alt="Será Porque Te Amo" class="track-artwork-lg">
+                            <div class="track-glass-overlay">
+                                <div class="track-info-lg">
+                                    <h3 class="track-title-lg">Será Porque Te Amo</h3>
+                                    <p class="track-artist-lg">Zaker</p>
                                 </div>
                             </div>
+                            <div class="soundcloud-widget">
+                                <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay"
+                                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zakerdj/zaker-sera-porque-te-amo&color=%23a855f7&inverse=true&auto_play=false&show_user=false"></iframe>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
                 <!-- Sessions Divider -->
