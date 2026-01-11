@@ -2581,7 +2581,7 @@
 
                     widgets[i].bind(SC.Widget.Events.PAUSE, function () {
                         updateButton(i, false);
-                        showProgress(i, false);
+                        // showProgress(i, false); // Removed to fix "closes on first click" bug. Keep player open on pause.
                         stopProgressUpdate();
                         // Don't clear currentlyPlaying here immediately to avoid flickering logic
                         // but strictly we can. Let's keep it handled by toggle logic mainly.
