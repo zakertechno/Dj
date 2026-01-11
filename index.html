@@ -2581,7 +2581,13 @@
                     });
 
                     widgets[i].bind(SC.Widget.Events.PAUSE, function () {
-                        if (ignorePause[i]) return;
+                        if (ignorePause[i]) {
+                            // On mobile, if it pauses spuriously, FORCE it to play again
+                            // to ensure audio matches the "Playing" UI state.
+                            widgets[i].play();
+                            return;
+                        }
+
                         updateButton(i, false);
                         // showProgress(i, false); // Removed to fix "closes on first click" bug. Keep player open on pause.
                         stopProgressUpdate();
