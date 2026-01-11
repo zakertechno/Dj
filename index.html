@@ -2577,9 +2577,11 @@
                         updateButton(i, true);
                         showProgress(i, true);
                         startProgressUpdate(i);
+                        ignorePause[i] = false;
                     });
 
                     widgets[i].bind(SC.Widget.Events.PAUSE, function () {
+                        if (ignorePause[i]) return;
                         updateButton(i, false);
                         // showProgress(i, false); // Removed to fix "closes on first click" bug. Keep player open on pause.
                         stopProgressUpdate();
@@ -2596,6 +2598,7 @@
                         resetProgress(i);
                         currentlyPlaying = null;
                         stopProgressUpdate();
+                        ignorePause[i] = false;
                     });
                 }
             }
