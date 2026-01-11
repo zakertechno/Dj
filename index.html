@@ -2045,13 +2045,13 @@
         }
 
         /* Genre Pill Refinement */
-        .genre-pill {
+        .genre-pill:first-child {
             text-shadow:
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
-            /* Fallback or enhancement to ensure it's visible */
+                -1px -1px 0 rgba(255, 255, 255, 0.4),
+                1px -1px 0 rgba(255, 255, 255, 0.4),
+                -1px 1px 0 rgba(255, 255, 255, 0.4),
+                1px 1px 0 rgba(255, 255, 255, 0.4);
+            /* Thin white border only for Hardbounce */
         }
     </style>
 </head>
@@ -2498,7 +2498,7 @@
             </div>
             <div class="contact-card">
                 <div class="contact-icon">📩</div>
-                <h3 class="contact-title">Bookings & Colaboraciones</h3>
+                <h3 class="contact-title">Bookings & More Info</h3>
                 <a href="mailto:ZakerTechnoDj@gmail.com" class="contact-btn-premium">
                     <svg viewBox="0 0 24 24">
                         <path
