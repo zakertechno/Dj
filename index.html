@@ -2053,6 +2053,56 @@
                 1px 1px 0 rgba(255, 255, 255, 0.4);
             /* Thin white border only for Hardbounce */
         }
+
+        /* Coming Soon Styles */
+        .coming-soon-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cs-text {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .cs-date {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .track-progress.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .mini-play-btn.disabled {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .release-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -2142,6 +2192,40 @@
             </div>
 
             <div class="tracks-container">
+                <!-- Track 0 - Coming Soon -->
+                <div class="track-large coming-soon">
+                    <div class="track-large-inner">
+                        <div class="track-artwork-container">
+                            <img src="1st-symphony.jpg" alt="1st Symphony of Zaker" class="track-artwork-lg">
+                            <div class="track-glass-overlay">
+                                <div class="track-info-lg">
+                                    <h3 class="track-title-lg">1st Symphony of Zaker</h3>
+                                    <p class="track-artist-lg">Zaker</p>
+                                </div>
+                                <div class="coming-soon-badge">
+                                    <span class="cs-text">COMING SOON</span>
+                                    <span class="cs-date">15 ENERO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="track-progress disabled">
+                            <div class="mini-play-btn disabled">
+                                <svg class="lock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <div class="progress-bar-container disabled">
+                                <div class="progress-bar" style="width: 0;"></div>
+                            </div>
+                            <div class="progress-time">
+                                <span class="release-date">15 . 01 . 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Track 1 - Large -->
                 <div class="track-large" data-track="1">
                     <div class="track-large-inner">
