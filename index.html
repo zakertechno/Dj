@@ -2084,6 +2084,49 @@
             text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-right: 20px;
+            /* Adjust spacing from right edge if needed */
+        }
+
+        .premium-lock-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .premium-lock {
+            width: 28px;
+            height: 28px;
+            color: #FFD700;
+            /* Gold */
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+            animation: premium-pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes premium-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+                opacity: 1;
+            }
+        }
+
+        }
+        }
+
         .track-progress.disabled {
             opacity: 0.6;
             pointer-events: none;
@@ -2202,9 +2245,18 @@
                                     <h3 class="track-title-lg">1st Symphony of Zaker</h3>
                                     <p class="track-artist-lg">Zaker</p>
                                 </div>
-                                <div class="coming-soon-badge">
-                                    <span class="cs-text">COMING SOON</span>
-                                    <span class="cs-date">15 ENERO</span>
+                                <div class="coming-soon-container">
+                                    <div class="coming-soon-badge">
+                                        <span class="cs-text">COMING SOON</span>
+                                        <span class="cs-date">15 ENERO</span>
+                                    </div>
+                                    <div class="premium-lock-wrapper">
+                                        <svg class="premium-lock" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10v8H6v-8h12zm-9-3V7c0-1.654 1.346-3 3-3s3 1.346 3 3v2H9z">
+                                            </path>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
