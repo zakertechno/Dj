@@ -698,10 +698,17 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             border-radius: 24px;
             display: none;
-            flex-direction: row;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
             gap: 12px;
             z-index: 30;
+        }
+
+        .track-controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
         }
 
         .track-progress.active {
@@ -709,13 +716,16 @@
         }
 
         .progress-bar-container {
-            flex: 1;
-            height: 6px;
+            width: 100%;
+            height: 8px;
+            /* Slightly thicker */
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
+            border-radius: 4px;
             cursor: pointer;
             overflow: hidden;
             position: relative;
+            flex-shrink: 0;
+            /* Prevent collapsing */
         }
 
         .progress-bar {
@@ -2261,18 +2271,20 @@
                             </div>
                         </div>
                         <div class="track-progress disabled">
-                            <div class="mini-play-btn disabled">
-                                <svg class="lock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none"
-                                    stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                </svg>
-                            </div>
                             <div class="progress-bar-container disabled">
                                 <div class="progress-bar" style="width: 0;"></div>
                             </div>
-                            <div class="progress-time">
-                                <span class="release-date">15 . 01 . 2026</span>
+                            <div class="track-controls-row">
+                                <div class="mini-play-btn disabled">
+                                    <svg class="lock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <div class="progress-time">
+                                    <span class="release-date">15 . 01 . 2026</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2300,27 +2312,29 @@
                             </div>
                         </div>
                         <div class="track-progress" id="progress-1">
-                            <button class="mini-play-btn" onclick="togglePlay(1)">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <polygon points="5,3 19,12 5,21" />
-                                </svg>
-                                <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
-                                    <rect x="6" y="4" width="4" height="16" />
-                                    <rect x="14" y="4" width="4" height="16" />
-                                </svg>
-                            </button>
                             <div class="progress-bar-container" onclick="seekTrack(1, event)">
                                 <div class="progress-bar" id="progress-bar-1"></div>
                             </div>
-                            <div class="progress-time">
-                                <span id="current-time-1">0:00</span>
-                                <span style="margin: 0 4px; opacity: 0.5;">/</span>
-                                <span id="duration-1">0:00</span>
+                            <div class="track-controls-row">
+                                <button class="mini-play-btn" onclick="togglePlay(1)">
+                                    <svg class="play-icon" viewBox="0 0 24 24">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                        <rect x="6" y="4" width="4" height="16" />
+                                        <rect x="14" y="4" width="4" height="16" />
+                                    </svg>
+                                </button>
+                                <div class="progress-time">
+                                    <span id="current-time-1">0:00</span>
+                                    <span style="margin: 0 4px; opacity: 0.5;">/</span>
+                                    <span id="duration-1">0:00</span>
+                                </div>
+                                <a href="https://soundcloud.com/zakerdj/02-hardbounce-girl-zaker" target="_blank"
+                                    rel="noopener" class="sc-img-link">
+                                    <img src="sc-button-new.png" alt="Listen on SoundCloud">
+                                </a>
                             </div>
-                            <a href="https://soundcloud.com/zakerdj/02-hardbounce-girl-zaker" target="_blank"
-                                rel="noopener" class="sc-img-link">
-                                <img src="sc-button-new.png" alt="Listen on SoundCloud">
-                            </a>
                         </div>
                     </div>
                     <iframe id="sc-player-1" class="sc-hidden" width="100%" height="166" scrolling="no" frameborder="no"
@@ -2350,27 +2364,29 @@
                             </div>
                         </div>
                         <div class="track-progress" id="progress-2">
-                            <button class="mini-play-btn" onclick="togglePlay(2)">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <polygon points="5,3 19,12 5,21" />
-                                </svg>
-                                <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
-                                    <rect x="6" y="4" width="4" height="16" />
-                                    <rect x="14" y="4" width="4" height="16" />
-                                </svg>
-                            </button>
                             <div class="progress-bar-container" onclick="seekTrack(2, event)">
                                 <div class="progress-bar" id="progress-bar-2"></div>
                             </div>
-                            <div class="progress-time">
-                                <span id="current-time-2">0:00</span>
-                                <span style="margin: 0 4px; opacity: 0.5;">/</span>
-                                <span id="duration-2">0:00</span>
+                            <div class="track-controls-row">
+                                <button class="mini-play-btn" onclick="togglePlay(2)">
+                                    <svg class="play-icon" viewBox="0 0 24 24">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                        <rect x="6" y="4" width="4" height="16" />
+                                        <rect x="14" y="4" width="4" height="16" />
+                                    </svg>
+                                </button>
+                                <div class="progress-time">
+                                    <span id="current-time-2">0:00</span>
+                                    <span style="margin: 0 4px; opacity: 0.5;">/</span>
+                                    <span id="duration-2">0:00</span>
+                                </div>
+                                <a href="https://soundcloud.com/zakerdj/01-los-indios-zaker" target="_blank"
+                                    rel="noopener" class="sc-img-link">
+                                    <img src="sc-button-new.png" alt="Listen on SoundCloud">
+                                </a>
                             </div>
-                            <a href="https://soundcloud.com/zakerdj/01-los-indios-zaker" target="_blank" rel="noopener"
-                                class="sc-img-link">
-                                <img src="sc-button-new.png" alt="Listen on SoundCloud">
-                            </a>
                         </div>
                     </div>
                     <iframe id="sc-player-2" class="sc-hidden" width="100%" height="166" scrolling="no" frameborder="no"
@@ -2400,27 +2416,29 @@
                             </div>
                         </div>
                         <div class="track-progress" id="progress-3">
-                            <button class="mini-play-btn" onclick="togglePlay(3)">
-                                <svg class="play-icon" viewBox="0 0 24 24">
-                                    <polygon points="5,3 19,12 5,21" />
-                                </svg>
-                                <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
-                                    <rect x="6" y="4" width="4" height="16" />
-                                    <rect x="14" y="4" width="4" height="16" />
-                                </svg>
-                            </button>
                             <div class="progress-bar-container" onclick="seekTrack(3, event)">
                                 <div class="progress-bar" id="progress-bar-3"></div>
                             </div>
-                            <div class="progress-time">
-                                <span id="current-time-3">0:00</span>
-                                <span style="margin: 0 4px; opacity: 0.5;">/</span>
-                                <span id="duration-3">0:00</span>
+                            <div class="track-controls-row">
+                                <button class="mini-play-btn" onclick="togglePlay(3)">
+                                    <svg class="play-icon" viewBox="0 0 24 24">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                        <rect x="6" y="4" width="4" height="16" />
+                                        <rect x="14" y="4" width="4" height="16" />
+                                    </svg>
+                                </button>
+                                <div class="progress-time">
+                                    <span id="current-time-3">0:00</span>
+                                    <span style="margin: 0 4px; opacity: 0.5;">/</span>
+                                    <span id="duration-3">0:00</span>
+                                </div>
+                                <a href="https://soundcloud.com/zakerdj/zaker-sera-porque-te-amo" target="_blank"
+                                    rel="noopener" class="sc-img-link">
+                                    <img src="sc-button-new.png" alt="Listen on SoundCloud">
+                                </a>
                             </div>
-                            <a href="https://soundcloud.com/zakerdj/zaker-sera-porque-te-amo" target="_blank"
-                                rel="noopener" class="sc-img-link">
-                                <img src="sc-button-new.png" alt="Listen on SoundCloud">
-                            </a>
                         </div>
                     </div>
                     <iframe id="sc-player-3" class="sc-hidden" width="100%" height="166" scrolling="no" frameborder="no"
