@@ -2134,7 +2134,48 @@
             }
         }
 
+        /* Countdown Timer Styles */
+        .countdown-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            z-index: 20;
         }
+
+        /* Locked Artwork Effect */
+        #symphony-track.locked .track-artwork-lg {
+            filter: blur(8px) brightness(0.7);
+            transition: filter 0.5s ease;
+        }
+
+        #symphony-track .track-artwork-lg {
+            transition: filter 0.5s ease;
+        }
+
+        .countdown-timer {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Space Grotesk', 'Inter', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown-timer span {
+            background: rgba(168, 85, 247, 0.3);
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 36px;
+            text-align: center;
+            color: var(--primary-light);
+            font-variant-numeric: tabular-nums;
         }
 
         .track-progress.disabled {
@@ -2245,32 +2286,80 @@
             </div>
 
             <div class="tracks-container">
-                <!-- Track 0 - Coming Soon -->
-                <div class="track-large coming-soon">
+                <!-- Track 0 - 1st Symphony (Countdown Release) -->
+                <div class="track-large locked" data-track="0" id="symphony-track">
                     <div class="track-large-inner">
                         <div class="track-artwork-container">
                             <img src="1st-symphony.jpg" alt="1st Symphony of Zaker" class="track-artwork-lg">
+
+                            <!-- Countdown Overlay (shown before release) - CENTERED ON ARTWORK -->
+                            <div class="countdown-overlay" id="countdown-overlay">
+                                <div class="coming-soon-badge">
+                                    <span class="cs-text">DISPONIBLE EN:</span>
+                                    <div class="countdown-timer" id="countdown-timer">
+                                        <span id="countdown-hours">00</span>h
+                                        <span id="countdown-minutes">00</span>m
+                                        <span id="countdown-seconds">00</span>s
+                                    </div>
+                                </div>
+                                <div class="premium-lock-wrapper">
+                                    <svg class="premium-lock" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10v8H6v-8h12zm-9-3V7c0-1.654 1.346-3 3-3s3 1.346 3 3v2H9z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+
                             <div class="track-glass-overlay">
                                 <div class="track-info-lg">
                                     <h3 class="track-title-lg">1st Symphony of Zaker</h3>
                                     <p class="track-artist-lg">Zaker</p>
                                 </div>
-                                <div class="coming-soon-container">
-                                    <div class="coming-soon-badge">
-                                        <span class="cs-text">COMING SOON</span>
-                                        <span class="cs-date">15 ENERO</span>
-                                    </div>
-                                    <div class="premium-lock-wrapper">
-                                        <svg class="premium-lock" viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10v8H6v-8h12zm-9-3V7c0-1.654 1.346-3 3-3s3 1.346 3 3v2H9z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </div>
+
+                                <!-- Play Button (hidden until release) -->
+                                <button class="play-btn-lg" onclick="togglePlay(0)" style="display: none;"
+                                    id="symphony-play-btn">
+                                    <svg class="play-icon" viewBox="0 0 24 24">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                        <rect x="6" y="4" width="4" height="16" />
+                                        <rect x="14" y="4" width="4" height="16" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="track-progress disabled">
+
+                        <!-- Progress Bar (hidden until release) -->
+                        <div class="track-progress" id="progress-0" style="display: none;">
+                            <div class="progress-bar-container" onclick="seekTrack(0, event)">
+                                <div class="progress-bar" id="progress-bar-0"></div>
+                            </div>
+                            <div class="track-controls-row">
+                                <button class="mini-play-btn" onclick="togglePlay(0)">
+                                    <svg class="play-icon" viewBox="0 0 24 24">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;">
+                                        <rect x="6" y="4" width="4" height="16" />
+                                        <rect x="14" y="4" width="4" height="16" />
+                                    </svg>
+                                </button>
+                                <div class="progress-time">
+                                    <span id="current-time-0">0:00</span>
+                                    <span style="margin: 0 4px; opacity: 0.5;">/</span>
+                                    <span id="duration-0">0:00</span>
+                                </div>
+                                <a href="https://soundcloud.com/zakerdj/1st-symphony-of-zaker" target="_blank"
+                                    rel="noopener" class="sc-img-link">
+                                    <img src="sc-button-new.png" alt="Listen on SoundCloud">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Countdown Progress Bar (shown before release) -->
+                        <div class="track-progress disabled" id="countdown-progress">
                             <div class="progress-bar-container disabled">
                                 <div class="progress-bar" style="width: 0;"></div>
                             </div>
@@ -2283,11 +2372,15 @@
                                     </svg>
                                 </div>
                                 <div class="progress-time">
-                                    <span class="release-date">15 . 01 . 2026</span>
+                                    <span class="release-date" id="countdown-release-text">🔒 Bloqueado hasta las
+                                        15:00</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <iframe id="sc-player-0" class="sc-hidden" width="100%" height="166" scrolling="no" frameborder="no"
+                        allow="autoplay"
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zakerdj/1st-symphony-of-zaker&color=%23a855f7&auto_play=false&show_user=false"></iframe>
                 </div>
 
                 <!-- Track 1 - Large -->
@@ -2711,6 +2804,105 @@
 
         // Initialize widgets when page loads
         document.addEventListener('DOMContentLoaded', function () {
+            // Symphony release date: 15 Jan 2026 at 15:00 Spain time (CET/CEST)
+            const releaseDate = new Date('2026-01-15T15:00:00+01:00');
+            let symphonyUnlocked = false;
+
+            // Countdown Timer Logic
+            function updateCountdown() {
+                const now = new Date();
+                const diff = releaseDate - now;
+
+                if (diff <= 0) {
+                    // Time's up! Unlock the track
+                    if (!symphonyUnlocked) {
+                        unlockSymphony();
+                        symphonyUnlocked = true;
+                    }
+                    return;
+                }
+
+                // Calculate hours, minutes, seconds
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Update display
+                document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            function unlockSymphony() {
+                // Hide countdown elements
+                const countdownOverlay = document.getElementById('countdown-overlay');
+                const countdownProgress = document.getElementById('countdown-progress');
+                const symphonyTrack = document.getElementById('symphony-track');
+
+                if (countdownOverlay) countdownOverlay.style.display = 'none';
+                if (countdownProgress) countdownProgress.style.display = 'none';
+
+                // Remove blur effect
+                if (symphonyTrack) symphonyTrack.classList.remove('locked');
+
+                // Show play button and progress bar
+                const playBtn = document.getElementById('symphony-play-btn');
+                const progressBar = document.getElementById('progress-0');
+
+                if (playBtn) playBtn.style.display = 'flex';
+                if (progressBar) progressBar.style.display = 'flex';
+
+                // Initialize widget for track 0 if not already done
+                initWidget(0);
+            }
+
+            function initWidget(i) {
+                const iframe = document.getElementById('sc-player-' + i);
+                if (iframe && !widgets[i]) {
+                    widgets[i] = SC.Widget(iframe);
+
+                    widgets[i].bind(SC.Widget.Events.READY, function () {
+                        widgets[i].getDuration(function (duration) {
+                            durations[i] = duration;
+                            const durationEl = document.getElementById('duration-' + i);
+                            if (durationEl) durationEl.textContent = formatTime(duration);
+                        });
+                    });
+
+                    widgets[i].bind(SC.Widget.Events.PLAY, function () {
+                        currentlyPlaying = i;
+                        updateButton(i, true);
+                        showProgress(i, true);
+                        startProgressUpdate(i);
+                    });
+
+                    widgets[i].bind(SC.Widget.Events.PAUSE, function () {
+                        updateButton(i, false);
+                        stopProgressUpdate();
+                        if (currentlyPlaying === i) {
+                            // Keep state for toggle
+                        }
+                    });
+
+                    widgets[i].bind(SC.Widget.Events.FINISH, function () {
+                        updateButton(i, false);
+                        showProgress(i, false);
+                        resetProgress(i);
+                        currentlyPlaying = null;
+                        stopProgressUpdate();
+                    });
+                }
+            }
+
+            // Initialize countdown or unlock immediately
+            if (new Date() >= releaseDate) {
+                unlockSymphony();
+            } else {
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
+
+            // Initialize widgets for tracks 1-3
             for (let i = 1; i <= 3; i++) {
                 const iframe = document.getElementById('sc-player-' + i);
                 if (iframe) {
